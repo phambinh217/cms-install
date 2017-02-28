@@ -31,10 +31,6 @@ class ModuleServiceProvider extends ServiceProvider
             include __DIR__ . '/../../helper/helper.php';
         }
 
-        // $this->publishes([
-        //     __DIR__.'/../../publishes/database/migrations' => database_path('migrations'),
-        // ], 'migration');
-
         $this->registerPolices();
     }
 

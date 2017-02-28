@@ -17,7 +17,6 @@ class Installed
     public function handle($request, Closure $next, ...$params)
     {
         if (!env('INSTALLED')) {
-            dd(1);
             return redirect()->route('install.index');
         }
 
