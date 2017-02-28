@@ -57,14 +57,14 @@ class InstallController extends \App\Http\Controllers\Controller
             $env = trim(substr($env, 0, $length));
         }
 
-        $env .= "\r".
-            "\r"."# database info".
-            "\r"."DB_CONNECTION=mysql".
-            "\r"."DB_PORT=3306".
-            "\r"."DB_HOST=".$request->input('db.localhost').
-            "\r"."DB_DATABASE=".$request->input('db.name').
-            "\r"."DB_USERNAME=".$request->input('db.username').
-            "\r"."DB_PASSWORD=".$request->input('db.password');
+        $env .= "\n".
+            "\n"."# database info".
+            "\n"."DB_CONNECTION=mysql".
+            "\n"."DB_PORT=3306".
+            "\n"."DB_HOST=".trim($request->input('db.localhost')).
+            "\n"."DB_DATABASE=".trim($request->input('db.name')).
+            "\n"."DB_USERNAME=".trim($request->input('db.username')).
+            "\n"."DB_PASSWORD=".trim($request->input('db.password'));
 
         \File::put(base_path('.env'), $env);
 
@@ -100,9 +100,9 @@ class InstallController extends \App\Http\Controllers\Controller
             $env = trim(substr($env, 0, $length));
         }
 
-        $env .= "\r".
-            "\r"."# installed".
-            "\r"."INSTALLED=true";
+        $env .= "\n".
+            "\n"."# installed".
+            "\n"."INSTALLED=true";
 
         $this->databaseSeeder();
 
