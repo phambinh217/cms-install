@@ -9,7 +9,7 @@
         <div class="page-header-inner ">
             <div class="page-logo">
                 <a href="{{ url('/') }}">
-                    <img src="{{ setting('logo', url('logo.png')) }}" alt="logo" class="logo-default" /> </a>
+                    <img src="{{ url('logo.png') }}" alt="logo" class="logo-default" /> </a>
                 <div class="menu-toggler sidebar-toggler">
                 </div>
             </div>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="page-footer">
-    <div class="page-footer-inner"> 2016 - {{ date('Y') }} &copy; {{ setting('company-name') }}
+    <div class="page-footer-inner"> 2016 - {{ date('Y') }} &copy; Phambinh.net
             <a href="http://phambinh.net"" target="_blank">Phambinh.net</a>
         </div>
         <div class="scroll-to-top">
