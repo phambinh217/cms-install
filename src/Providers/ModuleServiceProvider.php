@@ -7,7 +7,7 @@
  * @version: 1.0
  * @package: PhambinhCMS
  */
-namespace Packages\Install\Providers;
+namespace Phambinh\CmsInstall\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

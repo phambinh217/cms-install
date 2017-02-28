@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\Install\Http\Controllers;
+namespace Phambinh\CmsInstall\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
