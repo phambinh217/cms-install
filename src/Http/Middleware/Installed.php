@@ -16,7 +16,7 @@ class Installed
      */
     public function handle($request, Closure $next, ...$params)
     {
-        if (!env('INSTALLED')) {
+        if (!env('INSTALLED') && \Route::has('install.index')) {
             return redirect()->route('install.index');
         }
 

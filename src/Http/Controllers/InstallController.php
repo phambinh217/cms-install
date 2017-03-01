@@ -130,6 +130,7 @@ class InstallController extends \App\Http\Controllers\Controller
         $user->update([
             'password' => $info->password,
             'role_id' => $role->id,
+            'status' => '1',
         ]);
 
         setting()->sync('company-name', $info->company_name);
