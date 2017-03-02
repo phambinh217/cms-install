@@ -93,7 +93,7 @@ class InstallController extends \App\Http\Controllers\Controller
 
     public function installing(Request $request)
     {
-        \Artisan::call('migrate');
+        \Artisan::call('migrate', ['--force' => true]);
 
         $env = \File::get(base_path('.env'));
         if ($length = strpos($env, '# installed')) {
