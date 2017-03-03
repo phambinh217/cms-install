@@ -125,6 +125,7 @@ class InstallController extends \App\Http\Controllers\Controller
         $user = User::firstOrCreate([
             'name' => $info->username,
             'email' => $info->email,
+            'api_token' => str_random(60),
         ]);
 
         $user->update([
