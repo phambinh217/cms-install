@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="page-footer">
-    <div class="page-footer-inner"> 2016 - {{ date('Y') }} &copy; Phambinh.net
-            <a href="http://phambinh.net"" target="_blank">Phambinh.net</a>
+    <div class="page-footer-inner"> 2016 - {{ date('Y') }} &copy; Packages.net
+            <a href="http://Packages.net"" target="_blank">Packages.net</a>
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>

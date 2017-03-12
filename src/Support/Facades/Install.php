@@ -1,6 +1,6 @@
 <?php
 
-namespace Phambinh\CmsInstall\Support\Facades;
+namespace Packages\CmsInstall\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -11,6 +11,6 @@ class Install extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return \Phambinh\CmsInstall\Services\Install::class;
+        return \Packages\CmsInstall\Services\Install::class;
     }
 }

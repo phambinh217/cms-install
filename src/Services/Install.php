@@ -1,6 +1,6 @@
 <?php
 
-namespace Phambinh\CmsInstall\Services;
+namespace Packages\CmsInstall\Services;
 
 class Install
 {

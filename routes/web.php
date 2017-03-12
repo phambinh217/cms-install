@@ -6,10 +6,10 @@
  * to use, you have to uncommnet it
  * @author: noname
  * @version: 1.0
- * @package: PhambinhCMS
+ * @package: PackagesCMS
  */
 
-Route::group(['module' => 'install', 'namespace' => 'Phambinh\CmsInstall\Http\Controllers', 'middleware' => ['web.not-install'], 'prefix' => 'install'], function () {
+Route::group(['module' => 'install', 'namespace' => 'Packages\CmsInstall\Http\Controllers', 'middleware' => ['web.not-install'], 'prefix' => 'install'], function () {
     Route::get('/', 'InstallController@index')->name('install.index');
     Route::get('site-info', 'InstallController@siteInfo')->name('install.site-info');
     Route::get('run-install', 'InstallController@runInstall')->name('install.run-install');

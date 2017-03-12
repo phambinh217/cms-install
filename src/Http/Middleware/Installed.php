@@ -1,6 +1,6 @@
 <?php
 
-namespace Phambinh\CmsInstall\Http\Middleware;
+namespace Packages\CmsInstall\Http\Middleware;
 
 use \Closure;
 

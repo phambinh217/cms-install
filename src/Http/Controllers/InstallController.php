@@ -1,11 +1,11 @@
 <?php
 
-namespace Phambinh\CmsInstall\Http\Controllers;
+namespace Packages\CmsInstall\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
-use Phambinh\Cms\Role;
-use Phambinh\Cms\User;
+use Packages\Cms\Role;
+use Packages\Cms\User;
 
 class InstallController extends \App\Http\Controllers\Controller
 {
@@ -46,7 +46,7 @@ class InstallController extends \App\Http\Controllers\Controller
             try {
                 $conn = new \mysqli($request->input('db.localhost'), $request->input('db.username'), $request->input('db.password'), $request->input('db.name'));
             } catch (\ErrorException $e) {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
+                $validator->errors()->add('message', 'Không thể kết nối đến cơ sở dữ liệu với thông tin bên dưới.');
             }
         });
 
@@ -109,7 +109,7 @@ class InstallController extends \App\Http\Controllers\Controller
         \File::put(base_path('.env'), $env);
 
         return response()->json([
-            'title' => 'Thành công',
+            'title' => trans('cms.success'),
             'message' => 'Cài đặt hoàn tất',
         ]);
     }

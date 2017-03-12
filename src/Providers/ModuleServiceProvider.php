@@ -5,9 +5,9 @@
  * Description: This is the first file run of module. You can assign bootstrap or register module Services
  * @author: noname
  * @version: 1.0
- * @package: PhambinhCMS
+ * @package: PackagesCMS
  */
-namespace Phambinh\CmsInstall\Providers;
+namespace Packages\CmsInstall\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
