@@ -7,7 +7,7 @@
  * @version: 1.0
  * @package: PackagesCMS
  */
-namespace Packages\CmsInstall\Providers;
+namespace Phambinh\CmsInstall\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -41,7 +41,7 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \Module::registerFromJsonFile('install', __DIR__ .'/../../module.json');
+        \Module::registerFromComposerJson(__DIR__.'/../..');
         $this->registerAdminMenu();
     }
 

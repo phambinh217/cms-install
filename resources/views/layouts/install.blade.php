@@ -1,6 +1,7 @@
 @extends('Cms::layouts.blank')
 
 @push('blank.css')
+    <?php \Asset::where('css')->onlyCss()->render(); ?>
     @stack('css')
 @endpush
 
@@ -29,8 +30,8 @@
         </div>
     </div>
     <div class="page-footer">
-    <div class="page-footer-inner"> 2016 - {{ date('Y') }} &copy; Packages.net
-            <a href="http://Packages.net"" target="_blank">Packages.net</a>
+        <div class="page-footer-inner"> 2016 - {{ date('Y') }} &copy; Phambinhcms
+            <a href="http://phambinh.net"" target="_blank">Phambinh.net</a>
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>
@@ -43,5 +44,6 @@
 @endpush
 
 @push('blank.js_footer')
+    <?php \Asset::where('js_footer')->onlyJs()->render(); ?>
     @stack('js_footer')
 @endpush

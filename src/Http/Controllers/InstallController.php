@@ -1,11 +1,11 @@
 <?php
 
-namespace Packages\CmsInstall\Http\Controllers;
+namespace Phambinh\CmsInstall\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
-use Packages\Cms\Role;
-use Packages\Cms\User;
+use Phambinh\Cms\Role;
+use Phambinh\Cms\User;
 
 class InstallController extends \App\Http\Controllers\Controller
 {
@@ -52,21 +52,7 @@ class InstallController extends \App\Http\Controllers\Controller
 
         $validator->validate();
 
-        $env = \File::get(base_path('.env'));
-        if ($length = strpos($env, '# database info')) {
-            $env = trim(substr($env, 0, $length));
-        }
-
-        $env .= "\n".
-            "\n"."# database info".
-            "\n"."DB_CONNECTION=mysql".
-            "\n"."DB_PORT=3306".
-            "\n"."DB_HOST=".trim($request->input('db.localhost')).
-            "\n"."DB_DATABASE=".trim($request->input('db.name')).
-            "\n"."DB_USERNAME=".trim($request->input('db.username')).
-            "\n"."DB_PASSWORD=".trim($request->input('db.password'));
-
-        \File::put(base_path('.env'), $env);
+        \Install::setDatabaseInfo($request->input('db.localhost'), $request->input('db.username'), $request->input('db.password'), $request->input('db.name'));
 
         return redirect()->route('install.site-info');
     }
@@ -93,51 +79,17 @@ class InstallController extends \App\Http\Controllers\Controller
 
     public function installing(Request $request)
     {
-        \Artisan::call('migrate', ['--force' => true]);
+        $info = json_decode(file_get_contents(base_path('info.json')));
 
-        $env = \File::get(base_path('.env'));
-        if ($length = strpos($env, '# installed')) {
-            $env = trim(substr($env, 0, $length));
-        }
-
-        $env .= "\n".
-            "\n"."# installed".
-            "\n"."INSTALLED=true";
-
-        $this->databaseSeeder();
-
-        \File::put(base_path('.env'), $env);
+        \Install::migrate();
+        \Install::markAsInstalled();
+        \Install::createUser(\Install::createRole('Super Admin'), $info->email, $info->password, $info->username);
+        
+        \File::delete(base_path('info.json'));
 
         return response()->json([
             'title' => trans('cms.success'),
             'message' => 'Cài đặt hoàn tất',
         ]);
-    }
-
-    private function databaseSeeder()
-    {
-        $info = json_decode(file_get_contents(base_path('info.json')));
-        $role = Role::firstOrCreate([
-            'name' => 'Super admin',
-            'type' => '*',
-        ]);
-
-        $user = User::firstOrCreate([
-            'name' => $info->username,
-            'email' => $info->email,
-            'api_token' => str_random(60),
-        ]);
-
-        $user->update([
-            'password' => $info->password,
-            'role_id' => $role->id,
-            'status' => '1',
-        ]);
-
-        setting()->sync('company-name', $info->company_name);
-        setting()->sync('company-email', $info->email);
-        setting()->sync('system-install-at', date(DTF_DB));
-
-        \File::delete(base_path('info.json'));
     }
 }

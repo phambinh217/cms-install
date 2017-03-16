@@ -1,5 +1,10 @@
 @extends('Install::layouts.install')
 @section('content')
+    @if($errors->has('message'))
+        <div class="alert alert-danger">Không thể kết nối đến cơ sở dữ liệu với thông tin bên dưới. Hãy kiểm tra lại thông tin.</div>
+    @else
+        <div class="alert alert-info"><i class="fa fa-info"></i> Bước này chỉ cấu hình kết nối đến database chứ không trực tiếp tạo cơ sở dữ liệu.</div>
+    @endif
 	<div class="portlet light bordered form-fit">
         <div class="portlet-title">
             <div class="caption">
@@ -16,7 +21,9 @@
                         <label for="" class="col-sm-3 control-label">Tên cơ sở dữ liệu</label>
                         <div class="col-sm-9">
                             <input name="db[name]" type="text" class="form-control input-sm" value="{{ old('db.name') }}" />
-                            <span class="help-block">The name of the database you want to use with cms.</span>
+                            <span class="help-block">
+                                Tên của cơ sở dữ liệu. (Bạn phải tạo cơ sở dữ liệu từ trước).
+                            </span>
                             @if($errors->has('db.name'))
                             	<p class="text-danger">{{ $errors->first('db.name') }}</p>
                             @endif
@@ -26,7 +33,7 @@
                         <label for="" class="col-sm-3 control-label">Tên đăng nhập</label>
                         <div class="col-sm-9">
                             <input name="db[username]" type="text" class="form-control input-sm" value="{{ old('db.username') }}" />
-                            <span class="help-block">Your database username.</span>
+                            <span class="help-block">Tên đăng nhập vào cơ sở dữ liệu.</span>
                             @if($errors->has('db.username'))
                             	<p class="text-danger">{{ $errors->first('db.username') }}</p>
                             @endif
@@ -36,7 +43,7 @@
                         <label for="" class="col-sm-3 control-label">Mật khẩu</label>
                         <div class="col-sm-9">
                             <input name="db[password]" type="text" class="form-control input-sm" value="{{ old('db.password') }}" />
-                            <span class="help-block">Your database password.</span>
+                            <span class="help-block">Mật khẩu của cơ sở dữ liệu.</span>
                             @if($errors->has('db.password'))
                             	<p class="text-danger">{{ $errors->first('db.password') }}</p>
                             @endif
@@ -46,7 +53,7 @@
                         <label for="" class="col-sm-3 control-label">Địa chỉ máy chủ cơ sở dữ liệu</label>
                         <div class="col-sm-9">
                             <input name="db[localhost]" type="text" class="form-control input-sm" value="{{ old('db.localhost', 'localhost') }}" />
-                            <span class="help-block">You should be able to get this info from your web host, if localhost doesn’t work.</span>
+                            <span class="help-block">Nếu <code>localhost</code> không được, hãy thử liên hệ với nhà cung cấp hosting của bạn để lấy thông tin này.</span>
                             @if($errors->has('db.localhost'))
                             	<p class="text-danger">{{ $errors->first('db.localhost') }}</p>
                             @endif

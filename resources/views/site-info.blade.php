@@ -33,6 +33,16 @@
 							@endif
 						</div>
 					</div>
+					<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+						<label for="" class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-9">
+							<input name="email" type="text" class="form-control input-sm" value="{{ old('email') }}" />
+							<p class="help-block">Địa chỉ email dùng để đăng nhập cho người quản trị.</p>
+							@if($errors->has('email'))
+								<p class="text-danger">{{ $errors->first('email') }}</p>
+							@endif
+						</div>
+					</div>
 					<div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
 						<label for="" class="col-sm-3 control-label">Mật khẩu</label>
 						<div class="col-sm-9">
@@ -50,16 +60,6 @@
 							<p class="help-block">Nhập lại mật khẩu bên trên.</p>
 							@if($errors->has('password_confirmation'))
 								<p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
-							@endif
-						</div>
-					</div>
-					<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-						<label for="" class="col-sm-3 control-label">Email</label>
-						<div class="col-sm-9">
-							<input name="email" type="text" class="form-control input-sm" value="{{ old('email') }}" />
-							<p class="help-block">Địa chỉ email dùng để nhận thông báo từ hệ thống.</p>
-							@if($errors->has('email'))
-								<p class="text-danger">{{ $errors->first('email') }}</p>
 							@endif
 						</div>
 					</div>
